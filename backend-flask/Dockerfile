@@ -21,7 +21,7 @@ COPY . .
 # Inside Container and will remain set when the container is running
 ENV FLASK ENV=development
 
-EXPOSE $(PORT)
+EXPOSE ${PORT}
 
 # python3 -m flask run --host=0.0.0.0 --port=4567
 CMD [ "python3", "-", "flask", "run", "--host-0.0.0.0", "--port-4567" ]
