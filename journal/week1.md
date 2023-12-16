@@ -34,6 +34,8 @@ Run
 
 docker run --rm -p 4567:4567 -it backend-flask
 
+FRONTEND_URL="*" BACKEND_URL="*" docker run --rm -p 4567:4567 -it backend-flask
+
 Run in background
 
 docker container run --rm -p 4567:4567 -d backend-flask
