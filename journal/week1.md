@@ -23,6 +23,17 @@ cd . .
 
 
 
-*** Build Container
+### Build Container
 
 docker build -t backend-flask ./backend-flask
+
+
+### Run Container
+
+Run 
+
+docker run --rm -p 4567:4567 -it backend-flask
+
+Run in background
+
+docker container run --rm -p 4567:4567 -d backend-flask
