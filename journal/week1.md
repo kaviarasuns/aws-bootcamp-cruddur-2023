@@ -34,7 +34,11 @@ Run
 
 docker run --rm -p 4567:4567 -it backend-flask
 
-FRONTEND_URL="*" BACKEND_URL="*" docker run --rm -p 4567:4567 -it backend-flask
+
+// below command is working
+docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+
+docker run --rm -p 4567:4567 -it backend-flask -e FRONTEND_URL -e BACKEND_URL
 
 Run in background
 
