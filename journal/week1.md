@@ -28,18 +28,29 @@ cd . .
 docker build -t backend-flask ./backend-flask
 
 
+docker build -t frontend-react-js ./frontend-react-js
+
 ### Run Container
 
 Run 
 
 docker run --rm -p 4567:4567 -it backend-flask
 
+docker run --rm -p 3000:3000 -it frontend-react-js
+
+
 
 // below command is working
 docker run --rm -p 4567:4567 -it -e FRONTEND_URL='*' -e BACKEND_URL='*' backend-flask
+
 
 docker run --rm -p 4567:4567 -it backend-flask -e FRONTEND_URL -e BACKEND_URL
 
 Run in background
 
 docker container run --rm -p 4567:4567 -d backend-flaskl
+
+
+### Docker Compose
+
+
