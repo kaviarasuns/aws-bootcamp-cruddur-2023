@@ -10,6 +10,8 @@ OTEL_SERVICE_NAME: "${HONECOMB_SERVICE_NAME}"
 
 You'll need to grab the API key from your honeycomb account:
 
+## use gp env from base directory to set the api key
+
 ```
 export HONEYCOMB_API_KEY=""
 export HONEYCOMB_SERVICE_NAME="Crudder"
