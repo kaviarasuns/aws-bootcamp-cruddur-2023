@@ -1,6 +1,8 @@
 # Week 2 — Distributed Tracing
 
 
+### HoneyComb
+
 Add the following Env Vars to backend-flask in docker compose:
 
 ```
@@ -20,7 +22,6 @@ gp env HONEYCOMB_API_KEY=""
 gp env HONEYCOMB_SERVICE_NAME="Crudder"
 ```
 
-### HoneyComb
 
 When creating a new dataset in HoneyComb it will porvide all these installation instructions
 
