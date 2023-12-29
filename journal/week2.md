@@ -1,7 +1,7 @@
 # Week 2 — Distributed Tracing
 
 
-### HoneyComb
+## HoneyComb
 
 Add the following Env Vars to backend-flask in docker compose:
 
