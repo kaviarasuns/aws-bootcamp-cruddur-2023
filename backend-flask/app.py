@@ -2,6 +2,9 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 import os
+import sys
+
+from flask_awscognito import AWSCognitoAuthentication
 
 from services.home_activities import *
 from services.notifications_activities import *
@@ -49,6 +52,7 @@ LOGGER.addHandler(cw_handler)
 LOGGER.info("some message")
 LOGGER.info("test log")
 
+
 # honeycomb
 # Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()
@@ -70,6 +74,12 @@ tracer = trace.get_tracer(__name__)
 
 app = Flask(__name__)
 
+app.config['AWS_COGNITO_USER_POOL_ID'] = os.getenv("AWS_COGNITO_USER_POOL_ID")
+app.config['AWS_COGNITO_USER_POOL_CLIENT_ID'] = os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID")
+
+
+aws_auth = AWSCognitoAuthentication(app)
+
 #X-Ray -----------
 # XRayMiddleware(app, xray_recorder)
 
@@ -84,8 +94,8 @@ origins = [frontend, backend]
 cors = CORS(
   app, 
   resources={r"/api/*": {"origins": origins}},
-  expose_headers="location,link",
-  allow_headers="content-type,if-modified-since",
+  headers=['Content-Type', 'Authorization'],
+  expose_headers='Authorization',
   methods="OPTIONS,GET,HEAD,POST"
 )
 
@@ -156,6 +166,10 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
+  app.logger.debug("AUTH HEADER----")
+  app.logger.debug(
+    request.headers.get('Authorization')
+  )
   data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
