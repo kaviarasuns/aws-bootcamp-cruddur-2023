@@ -1,4 +1,3 @@
-
 import time
 import requests
 from jose import jwk, jwt
