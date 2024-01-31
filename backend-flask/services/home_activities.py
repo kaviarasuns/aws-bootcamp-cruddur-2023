@@ -5,7 +5,7 @@ tracer = trace.get_tracer("home.activities")
 
 
 class HomeActivities:
-  def run(logger):
+  def run(cognito_user_id=None):
     #logger.info("HomeActivities")
     with tracer.start_as_current_span("home-activities-mock-data"):
       span = trace.get_current_span()
@@ -48,7 +48,20 @@ class HomeActivities:
         'expires_at': (now + timedelta(hours=12)).isoformat(),
         'likes': 0,
         'replies': []
-      }
+      },
       ]
+
+      if cognito_user_id != None:
+        extra_crud = {
+          'uuid': '248959df-3079-4947-b847-9e0892d1bac8',
+          'handle':  'Secret',
+          'message': 'My dear doctor, I am just simple tailor',
+          'created_at': (now - timedelta(hours=1)).isoformat(),
+          'expires_at': (now + timedelta(hours=12)).isoformat(),
+          'likes': 0,
+          'replies': []
+        }
+        results.append(extra_crud)
+
       span.set_attribute("app.result_length", len(results))
       return results
