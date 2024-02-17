@@ -10,10 +10,10 @@ from lib.db import pool, query_wrap_array
 class HomeActivities:
   def run(cognito_user_id=None):
     #logger.info("HomeActivities")
-    with tracer.start_as_current_span("home-activities-mock-data"):
-      span = trace.get_current_span()
-      now = datetime.now(timezone.utc).astimezone()
-      span.set_attribute("app.now", now.isoformat())
+    # with tracer.start_as_current_span("home-activities-mock-data"):
+    #   span = trace.get_current_span()
+    #   now = datetime.now(timezone.utc).astimezone()
+    #   span.set_attribute("app.now", now.isoformat())
 
       sql = query_wrap_array("""
         SELECT
@@ -38,6 +38,7 @@ class HomeActivities:
           # this will return a tuple
           # the first field being the data
           json = cur.fetchone()
+        print("=1-----------------")
       return json[0]
       return results
 
